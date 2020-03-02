@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+  <meta name="description" content="记录生活和代码，鼓励阅读与创作">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="jean">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="当用户在地址栏中输入网址，到最后看到页面，中间都经历了什么？"/>
+  
+  <!--Open Graph Description-->
+  
+      <meta property="og:description" content="记录生活和代码，鼓励阅读与创作" />
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="jean博客"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>当用户在地址栏中输入网址，到最后看到页面，中间都经历了什么？ - jean博客</title>
+
+
+  <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
+
+  <!-- Custom CSS/Sass -->
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="https://hexo.io/logo.svg" alt="jean博客" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            当用户在地址栏中输入网址，到最后看到页面，中间都经历了什么？
+            
+          </h1>
+          <p class="posted-on">
+          2020-03-02
+          </p>
+          <div class="tags-links">
+            
+              
+                <a href="/tags/http/" rel="tag">
+                  http
+                </a>
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content has_line_number">
+          <h2 id="1-URL地址解析"><a href="#1-URL地址解析" class="headerlink" title="1.URL地址解析"></a>1.URL地址解析</h2><pre><code>&gt;http://jean-z.github.io?id=xxx&amp;name=yyy</code></pre><ul>
+<li><p>传输协议 <strong>把信息在客户端和服务端进行传递</strong> 类似于快递小哥</p>
+<ul>
+<li>http 超文本传输协议（传输的内容除了文本，还有可能是其它类型：二进制编码、BASE64码、文件流等等）</li>
+<li>https 比HTTP更加安全的传输协议（传输通道设置加密算法SSL），一般支付类网站都是HTTPS协议</li>
+<li>ftp 资源上传协议，一般应用于把本地文件直接上传到服务器端</li>
+</ul>
+</li>
+<li><p>域名  jean-z.github.io</p>
+<ul>
+<li>一级域名 <a href="http://www.jean-z.github.io" target="_blank" rel="noopener">www.jean-z.github.io</a></li>
+<li>二级域名 video.jean-z.github.io</li>
+<li>三级域名 webG.video.jean-z.github.io</li>
+<li>常用域名性质：.com国际 / .cn中国 / .gov政府 / .org官方 / .net系统 / .io博客 / .vip …</li>
+</ul>
+</li>
+<li><p>端口号 （根据端口号，找到当前服务器上指定的服务）</p>
+<ul>
+<li>0~65535之间</li>
+<li>不同协议有自己默认的端口号（也就是自己不用写，浏览器会帮我们加上）<ul>
+<li>http =&gt; 80</li>
+<li>https =&gt; 443</li>
+<li>ftp =&gt; 21</li>
+<li>除这几个在书写的时候可以省略，其余的不能省</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>请求资源的路径和名称</p>
+<ul>
+<li>/stu/index.html<ul>
+<li>一般情况下，如果我们访问的是index.html等，可以省略不写（因为服务端一般会设置index.html为默认文档，当然可以自定义）</li>
+</ul>
+</li>
+<li>伪URL<ul>
+<li>SEO优化    <a href="https://item.jd.com/100006038463.html" target="_blank" rel="noopener">https://item.jd.com/100006038463.html</a> </li>
+<li>数据请求的接口地址  /user/list</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>问号传参部分 ?xxx=xxx</p>
+<ul>
+<li>客户端基于GET系列请求，把信息传递会服务器，一般都会基于问号传参的模式</li>
+<li>页面之间跳转，信息的一些通信也可以基于问号传参的方式（单页面中组件和组件跳转之间的信息通信，也可能基于问号传参）</li>
+<li>关于传递的内容需要进行编码处理（处理特殊字符和中文）<ul>
+<li>encodeURI / decodeURI</li>
+<li>encodeURIComponent / decodeURIComponent</li>
+<li>escape / unescape</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>设置哈希HASH  #xxx</p>
+<h2 id="2-DNS解析"><a href="#2-DNS解析" class="headerlink" title="2.DNS解析"></a>2.DNS解析</h2><p>网站中，每发送一个TCP请求，都要进行DNS解析（一但当前域名解析过一次，浏览器一般会缓存解析记录，缓存时间一般在1分钟左右，后期发送的请求如果还是这个域名，则跳过解析步骤 =&gt;这是一个性能优化点）</p>
+</li>
+</ul>
+<p>真实项目中，一个大型网站，他要请求的资源是分散到不同的服务器上的（每一个服务器都有自己的一个域名解析）</p>
+<ul>
+<li>WEB服务器（处理静态资源文件，例如：html/css/js等 的请求）</li>
+<li>数据服务器（处理数据请求）</li>
+<li>图片服务器 （处理图片请求）</li>
+<li>音视频服务器</li>
+<li>……<br>这样导致，我们需要解析的DNS会有很多次</li>
+</ul>
+<p><strong>优化技巧：DNS Prefetch 即 DNS 预获取</strong></p>
+<blockquote>
+<p>让页面加载（尤其是后期资源的加载）更顺畅更快一些</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;x-dns-prefetch-control&quot; content&#x3D;&quot;on&quot;&gt;</span><br><span class="line">&lt;link rel&#x3D;&quot;dns-prefetch&quot; href&#x3D;&quot;&#x2F;&#x2F;static.360buyimg.com&quot;&gt;</span><br><span class="line">&lt;link rel&#x3D;&quot;dns-prefetch&quot; href&#x3D;&quot;&#x2F;&#x2F;misc.360buyimg.com&quot;&gt;</span><br><span class="line">&lt;link rel&#x3D;&quot;dns-prefetch&quot; href&#x3D;&quot;&#x2F;&#x2F;img10.360buyimg.com&quot;&gt;</span><br><span class="line">&lt;link rel&#x3D;&quot;dns-prefetch&quot; href&#x3D;&quot;&#x2F;&#x2F;img11.360buyimg.com&quot;&gt;</span><br><span class="line">&lt;link rel&#x3D;&quot;dns-prefetch&quot; href&#x3D;&quot;&#x2F;&#x2F;img12.360buyimg.com&quot;&gt;</span><br><span class="line">.......</span><br></pre></td></tr></table></figure>
+<h2 id="3-基于TCP的三次握手，够建客户端和服务器端的连接通道"><a href="#3-基于TCP的三次握手，够建客户端和服务器端的连接通道" class="headerlink" title="3.基于TCP的三次握手，够建客户端和服务器端的连接通道"></a>3.基于TCP的三次握手，够建客户端和服务器端的连接通道</h2><p>只有建立好连接通道，才能基于HTTP等传输协议，实现客户端和服务器端的信息交互</p>
+<h2 id="4-发送HTTP请求"><a href="#4-发送HTTP请求" class="headerlink" title="4.发送HTTP请求"></a>4.发送HTTP请求</h2><p>基于HTTP等传输协议，客户端把一些信息传递给服务器</p>
+<ul>
+<li><p>HTTP请求报文（所有客户端传递给服务器的内容，统称为请求报文）</p>
+<ul>
+<li>谷歌控制台NetWork中可以看到</li>
+<li>请求起始行</li>
+<li>请求首部（请求头）</li>
+<li>请求主体</li>
+</ul>
+</li>
+<li><p>强缓存 和 协商缓存（性能优化：减少HTTP请求的次数）</p>
+<ul>
+<li>强缓存 ( Cache-Control 和 Expires )</li>
+<li>协商缓存 ( Last-Modified 和 Etag )<h2 id="5-服务器接受到请求，并进行处理，最后把信息返回给客户端"><a href="#5-服务器接受到请求，并进行处理，最后把信息返回给客户端" class="headerlink" title="5.服务器接受到请求，并进行处理，最后把信息返回给客户端"></a>5.服务器接受到请求，并进行处理，最后把信息返回给客户端</h2></li>
+</ul>
+</li>
+<li><p>HTTP响应报文（所有服务器返回给客户端的内容）</p>
+<ul>
+<li>响应起始行</li>
+<li>响应首部（响应头）<ul>
+<li>date存储的是服务器的时间</li>
+<li>…</li>
+</ul>
+</li>
+<li>响应主体 </li>
+<li>服务器返回的时候是：先把响应头信息返回，然后继续返回响应主体中的内容（需要的信息大部分都是基于响应主体返回的）<h2 id="6-断开TCP链接通道-（四次挥手）"><a href="#6-断开TCP链接通道-（四次挥手）" class="headerlink" title="6.断开TCP链接通道 （四次挥手）"></a>6.断开TCP链接通道 （四次挥手）</h2></li>
+</ul>
+</li>
+<li><p>当客户端把请求信息发送给服务器的时候，就挥第一次手：客户端告诉服务器端，我已经把请求报文都给你了，你准备关闭吧</p>
+</li>
+<li><p>第二次挥手：由服务器发起，告诉浏览器，我接收完请求报文，我准备关闭，你也准备吧；</p>
+</li>
+<li><p>第三次挥手：由服务器发起，告诉浏览器，我响应报文发送完毕，你准备关闭吧；</p>
+</li>
+<li><p>第四次挥手：由浏览器发起，告诉服务器，我响应报文接收完毕，我准备关闭，你也准备吧；</p>
+</li>
+</ul>
+<p>Connection: Keep-Alive 保持TCP不中断（性能优化点，<strong><em>减少每一次请求还需要重新建立链接通道的时间</em></strong>）</p>
+<h2 id="7-客户端渲染服务器返回的结果"><a href="#7-客户端渲染服务器返回的结果" class="headerlink" title="7.客户端渲染服务器返回的结果"></a>7.客户端渲染服务器返回的结果</h2>
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+  <div id="disqus_thread">
+    <script type="text/javascript">
+    var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = 'post-当用户在地址栏中输入网址，到最后看到页面，中间都经历了什么？';
+          this.page.title = '当用户在地址栏中输入网址，到最后看到页面，中间都经历了什么？';
+      };
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  </div>
+  
+</section>
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+      
+        <div class="nav-next">
+          <a href="/2020/03/02/NeverSettle/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">关于本站</h1>
+        <div class="custom-widget-content">
+          
+          <p>张英俊的个人博客网站</p>
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/jean-z" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="https://weibo.com/1780163820/profile?topnav=1&wvr=6" class="icon icon-weibo" target="_blank">weibo</a>
+            
+              <a href="862254760@qq.com" class="icon icon-mail" target="_blank">mail</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>jean博客 &copy; 2020</span>
+    
+      <span class="split">|</span>
+      <span>jean © 2020</span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+
+<script src="/js/app.js"></script>
+
+
+<script>
+  var disqus_shortname = 'hinpc';
+
+  
+  var disqus_url = 'https://jean-z.github.io/2020/03/02/%E5%BD%93%E7%94%A8%E6%88%B7%E5%9C%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E4%B8%AD%E8%BE%93%E5%85%A5%E7%BD%91%E5%9D%80%EF%BC%8C%E5%88%B0%E6%9C%80%E5%90%8E%E7%9C%8B%E5%88%B0%E9%A1%B5%E9%9D%A2%EF%BC%8C%E4%B8%AD%E9%97%B4%E9%83%BD%E7%BB%8F%E5%8E%86%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/';
+  
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<!-- baidu_analytics start -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?231ccbaa25cdcecb7c4c27e0a48b4956";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- baidu_analytics end -->
+
+
+
+
+</body>
+
+</html>
