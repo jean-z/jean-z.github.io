@@ -18,7 +18,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="前端性能优化总结"/>
+      <meta property="og:title" content="正则表达式"/>
   
   <!--Open Graph Description-->
   
@@ -37,7 +37,7 @@
 
   <!-- Title -->
   
-  <title>前端性能优化总结 - jean博客</title>
+  <title>正则表达式 - jean博客</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
@@ -127,11 +127,11 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            前端性能优化总结
+            正则表达式
             
           </h1>
           <p class="posted-on">
-          2020-03-03
+          2020-03-04
           </p>
           <div class="tags-links">
             
@@ -141,42 +141,57 @@
         </div>
         <!-- Post Main Content -->
         <div class="entry-content has_line_number">
-          <h2 id="前端性能优化点"><a href="#前端性能优化点" class="headerlink" title="前端性能优化点"></a>前端性能优化点</h2><h3 id="1-减少HTTP请求的次数和大小"><a href="#1-减少HTTP请求的次数和大小" class="headerlink" title="1. 减少HTTP请求的次数和大小"></a>1. 减少HTTP请求的次数和大小</h3><ul>
-<li>合并压缩 webpack（代码比较少的情况下，尽可能使用内嵌式）</li>
-<li>雪碧图或者图片BASE64</li>
-<li>对于动态获取的图片，采用图片懒加载（数据也做异步分批加载：开始只请求加载第一屏的数据，滑动到第几屏在加载这一屏的数据和图片）<ul>
-<li>骨架屏技术（首屏内容由服务器渲染；再或者开始展示占位结构，客户端在单独获取数据渲染；）</li>
-</ul>
-</li>
-<li>音视频取消预加载（播放的时候再去加载音视频文件，对于自动播放采取延迟播放的处理）</li>
-<li>服务器采用GZIP压缩</li>
-<li>….</li>
-</ul>
-<h4 id="2-建立缓存机制"><a href="#2-建立缓存机制" class="headerlink" title="2.建立缓存机制"></a>2.建立缓存机制</h4><blockquote>
-<p>把一些请求回来的信息进行本地存储（缓存存储），在缓存有效期内，再次请求资源，直接从缓存中获取数据，而不是服务器上从新拉取</p>
+          <h2 id="正则表达式创建的两种方式"><a href="#正则表达式创建的两种方式" class="headerlink" title="正则表达式创建的两种方式"></a>正则表达式创建的两种方式</h2><blockquote>
+<p>let reg = /\d+/;</p>
 </blockquote>
+<blockquote>
+<p>let reg2 = new RegExp(“\d+”) </p>
+</blockquote>
+<h2 id="正则表达式由两部分组成"><a href="#正则表达式由两部分组成" class="headerlink" title="正则表达式由两部分组成"></a>正则表达式由两部分组成</h2><ul>
+<li><p>元字符</p>
+</li>
+<li><p>修饰符</p>
+<blockquote>
+<p>常用的元字符<br>//=&gt;1.量词的元字符:设置出现的次数</p>
 <ul>
-<li>DNS预获取</li>
-<li>资源文件的强缓存和协商缓存（304）</li>
-<li>数据也可以做缓存（把从服务器获取的数据存储到本地：cookie/localStorage/redux/vuex等，设定期限，在期限内，直接从本地获取数据即可）</li>
-<li>离线存储（一般很少用）manifest</li>
-<li>CDN区域分布式服务器开发部署（费钱  效果会非常的好）</li>
-<li>….</li>
+<li>零到多次</li>
 </ul>
-<h4 id="3-代码上的优化"><a href="#3-代码上的优化" class="headerlink" title="3.代码上的优化"></a>3.代码上的优化</h4><ul>
-<li>减少DOM的重绘和回流</li>
-<li>在JS中尽量减少闭包的使用（内存优化）</li>
-<li>在JS中避免“嵌套循环”和“死循环”</li>
-<li>尽可能使用事件委托</li>
-<li>尽量减少CSS表达式的使用(expression)</li>
-<li>CSS选择器解析规则是从右向左解析（基于less/sass开发的时候尽可能减少层级嵌套，目的是让选择器的前缀短一点）  【 a{}  和  .box a{}】</li>
-<li>尽可能实现JS的封装（低耦合高内聚），减少页面中的冗余代码</li>
-<li>在CSS导入的时候尽量减少使用@import导入式</li>
-<li>使用window.requestAnimationFrame（JS中的帧动画）代替传统的定时器动画（能用CSS3动画的绝对不用JS动画）</li>
-<li>减少递归的使用，避免死递归，避免由于递归导致的栈内存嵌套</li>
-<li>基于SCRIPT调取JS的时候，可已使用 defer或者async 来异步加载<br>……</li>
+<ul>
+<li>一到多次<br>? <strong>零次或者一次</strong><br>{n} 出现n次<br>{n,} 出现n到多次<br>{n,m} 出现m到m次</li>
 </ul>
-<h4 id="4-安全优化"><a href="#4-安全优化" class="headerlink" title="4.安全优化"></a>4.安全优化</h4><h4 id="5-webpack上的优化"><a href="#5-webpack上的优化" class="headerlink" title="5.webpack上的优化"></a>5.webpack上的优化</h4>
+</blockquote>
+<blockquote>
+<p>//=2.特殊元字符 单个或者组合在一起代表特殊的含义<br>\ 转义字符(普通-&gt;特殊-&gt;普通)<br>. \n(换行符) 以外的任意字符<br>^ 以哪一个元字符作为开始<br>$ 以哪一个元字符作为结束<br>\n 换行符<br>\d 0<del>9 之间的一个数字<br>\D 非 0</del>9 之间的一个数字<br>\w 数字 字母 下划线中的任意一个字符<br>\s 一个空白字符<br>\t 一个制表符(一个TAB键：四个空格)<br>x|y x或者y中的一个字符<br>[xyz] x或者y或者z中的一个字符<br>[^xy] 除 x/y 以外的任意字符<br>[a-z] 指 a到z的任意字符 [0-9a-zA-Z_] === \W<br>[^a-z] 上一个的取反非<br>() 正则中的分组符号<br>(?:) 只匹配不获取<br>(?=) 正向预查<br>(?!) 负向预查</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="元字符详细解析"><a href="#元字符详细解析" class="headerlink" title="元字符详细解析"></a>元字符详细解析</h2><p>^ $</p>
+<blockquote>
+<p>let reg = /^\d/ 只能以数字开头<br>括号中出现的字符一般都代表本身的含义<br>let reg = /^[@+]+$/ +代表+ 不是一个或多个的意思<br>let reg = /^[\d]+$/ \d在中括号中还是代表0-9(特殊)<br>中括号中不存在多位数<br>reg = /^[10-29]$/ 1或者0-2或者9</p>
+</blockquote>
+<h2 id="常用的正则表达式"><a href="#常用的正则表达式" class="headerlink" title="常用的正则表达式"></a>常用的正则表达式</h2><ul>
+<li>验证是否为有效数字<blockquote>
+<p>  规则分析<br>1 可能出现正负号 也可能不出现 [+-]?<br>2 一位0-9都可以多位首位不能为0  (\d|([1-9]\d+))<br>3 小数部分可能有可能没有 一旦有后面必须有小数点+数字(.\d+)<br>let reg = /^(+|-)?(\d|([1-9]\d+))(.\d+)?$/ 或者/^[+-]?$/</p>
+</blockquote>
+</li>
+<li>验证密码<blockquote>
+<p>let reg = /^\w{6,12}$/;</p>
+</blockquote>
+</li>
+<li>验证真实姓名<blockquote>
+<p>1 汉字  /^[\u4E00-\u9FA5]$/<br>2 名字长度2到10位<br>3 可能有译名 汉字<br>let reg = /^[\u4E00-\u9FA5]{2,10}(·[\u4E00-\u9FA5]){0,2}$/</p>
+</blockquote>
+</li>
+<li>验证邮箱<blockquote>
+<p>let reg = /^\w+((-\w)|(.\w+))<em>@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+)</em>.[A-Za-z0-9]+$/;</p>
+</blockquote>
+</li>
+<li>身份证号码<blockquote>
+<p>十八位： ^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$<br>十五位： ^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$<br>总：<br>( ^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$)</p>
+</blockquote>
+</li>
+</ul>
+
         </div>
       </article>
     </div>
@@ -191,8 +206,8 @@
     <script type="text/javascript">
     var disqus_config = function () {
           this.page.url = window.location.href;
-          this.page.identifier = 'post-performance optimization';
-          this.page.title = '前端性能优化总结';
+          this.page.identifier = 'post-RegExp';
+          this.page.title = '正则表达式';
       };
     </script>
     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
@@ -205,13 +220,9 @@
     <!-- Pre or Next -->
     <div class="nav-links">
       
-        <div class="nav-previous">
-          <a href="/2020/03/04/RegExp/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
-        </div>
-      
       
         <div class="nav-next">
-          <a href="/2020/03/02/url/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+          <a href="/2020/03/03/performance optimization/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
         </div>
       
     </div>
@@ -286,7 +297,7 @@
   var disqus_shortname = 'hinpc';
 
   
-  var disqus_url = 'https://jean-z.github.io/2020/03/03/performance%20optimization/';
+  var disqus_url = 'https://jean-z.github.io/2020/03/04/RegExp/';
   
 
   (function(){
