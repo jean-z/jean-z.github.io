@@ -18,7 +18,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="前端性能优化总结"/>
+      <meta property="og:title" content="vuex"/>
   
   <!--Open Graph Description-->
   
@@ -37,7 +37,7 @@
 
   <!-- Title -->
   
-  <title>前端性能优化总结 - jean博客</title>
+  <title>vuex - jean博客</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
@@ -127,11 +127,11 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            前端性能优化总结
+            vuex
             
           </h1>
           <p class="posted-on">
-          2020-03-03
+          2020-03-04
           </p>
           <div class="tags-links">
             
@@ -141,42 +141,7 @@
         </div>
         <!-- Post Main Content -->
         <div class="entry-content has_line_number">
-          <h2 id="前端性能优化点"><a href="#前端性能优化点" class="headerlink" title="前端性能优化点"></a>前端性能优化点</h2><h4 id="1-减少HTTP请求的次数和大小"><a href="#1-减少HTTP请求的次数和大小" class="headerlink" title="1. 减少HTTP请求的次数和大小"></a>1. 减少HTTP请求的次数和大小</h4><ul>
-<li>合并压缩 webpack（代码比较少的情况下，尽可能使用内嵌式）</li>
-<li>雪碧图或者图片BASE64</li>
-<li>对于动态获取的图片，采用图片懒加载（数据也做异步分批加载：开始只请求加载第一屏的数据，滑动到第几屏在加载这一屏的数据和图片）<ul>
-<li>骨架屏技术（首屏内容由服务器渲染；再或者开始展示占位结构，客户端在单独获取数据渲染；）</li>
-</ul>
-</li>
-<li>音视频取消预加载（播放的时候再去加载音视频文件，对于自动播放采取延迟播放的处理）</li>
-<li>服务器采用GZIP压缩</li>
-<li>….</li>
-</ul>
-<h4 id="2-建立缓存机制"><a href="#2-建立缓存机制" class="headerlink" title="2.建立缓存机制"></a>2.建立缓存机制</h4><blockquote>
-<p>把一些请求回来的信息进行本地存储（缓存存储），在缓存有效期内，再次请求资源，直接从缓存中获取数据，而不是服务器上从新拉取</p>
-</blockquote>
-<ul>
-<li>DNS预获取</li>
-<li>资源文件的强缓存和协商缓存（304）</li>
-<li>数据也可以做缓存（把从服务器获取的数据存储到本地：cookie/localStorage/redux/vuex等，设定期限，在期限内，直接从本地获取数据即可）</li>
-<li>离线存储（一般很少用）manifest</li>
-<li>CDN区域分布式服务器开发部署（费钱  效果会非常的好）</li>
-<li>….</li>
-</ul>
-<h4 id="3-代码上的优化"><a href="#3-代码上的优化" class="headerlink" title="3.代码上的优化"></a>3.代码上的优化</h4><ul>
-<li>减少DOM的重绘和回流</li>
-<li>在JS中尽量减少闭包的使用（内存优化）</li>
-<li>在JS中避免“嵌套循环”和“死循环”</li>
-<li>尽可能使用事件委托</li>
-<li>尽量减少CSS表达式的使用(expression)</li>
-<li>CSS选择器解析规则是从右向左解析（基于less/sass开发的时候尽可能减少层级嵌套，目的是让选择器的前缀短一点）  【 a{}  和  .box a{}】</li>
-<li>尽可能实现JS的封装（低耦合高内聚），减少页面中的冗余代码</li>
-<li>在CSS导入的时候尽量减少使用@import导入式</li>
-<li>使用window.requestAnimationFrame（JS中的帧动画）代替传统的定时器动画（能用CSS3动画的绝对不用JS动画）</li>
-<li>减少递归的使用，避免死递归，避免由于递归导致的栈内存嵌套</li>
-<li>基于SCRIPT调取JS的时候，可已使用 defer或者async 来异步加载<br>……</li>
-</ul>
-<h4 id="4-安全优化"><a href="#4-安全优化" class="headerlink" title="4.安全优化"></a>4.安全优化</h4><h4 id="5-webpack上的优化"><a href="#5-webpack上的优化" class="headerlink" title="5.webpack上的优化"></a>5.webpack上的优化</h4>
+          
         </div>
       </article>
     </div>
@@ -191,8 +156,8 @@
     <script type="text/javascript">
     var disqus_config = function () {
           this.page.url = window.location.href;
-          this.page.identifier = 'post-performance optimization';
-          this.page.title = '前端性能优化总结';
+          this.page.identifier = 'post-vuex';
+          this.page.title = 'vuex';
       };
     </script>
     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
@@ -205,13 +170,9 @@
     <!-- Pre or Next -->
     <div class="nav-links">
       
-        <div class="nav-previous">
-          <a href="/2020/03/04/RegExp/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
-        </div>
-      
       
         <div class="nav-next">
-          <a href="/2020/03/02/url/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+          <a href="/2020/03/04/Responsive-Web-Design/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
         </div>
       
     </div>
@@ -286,7 +247,7 @@
   var disqus_shortname = 'hinpc';
 
   
-  var disqus_url = 'https://jean-z.github.io/2020/03/03/performance%20optimization/';
+  var disqus_url = 'https://jean-z.github.io/2020/03/04/vuex/';
   
 
   (function(){
