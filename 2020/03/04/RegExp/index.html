@@ -185,6 +185,44 @@
 </blockquote>
 </li>
 </ul>
+<h2 id="正则表达式之两种创建方式的区别"><a href="#正则表达式之两种创建方式的区别" class="headerlink" title="正则表达式之两种创建方式的区别"></a>正则表达式之两种创建方式的区别</h2><blockquote>
+<p>构造函数因为传递的是字符串 ,\需要写两个才表示斜杠<br>let reg = /\d+/g<br>reg = new RegExp(“\d+”,”g”);</p>
+</blockquote>
+<blockquote>
+<p>正则表达式中部分内容是变量存储的值<br><strong>两个斜杠中间包起来的都是元字符</strong>(如果正则中想要包含某个变量的值,则不能使用字面量的创建方式)<br>let type =”jean”;<br>reg = /^@”+type+”@$/;<br>console.log(reg.test(“@jean@”));//false<br>console.log(reg.test(‘@”””typeeeee”@’));//true</p>
+</blockquote>
+<blockquote>
+<p>reg = new RegExp(“^@”+type+”@$”);<br>console.log(reg.test(“@jean@”));//true</p>
+</blockquote>
+<h2 id="正则的捕获"><a href="#正则的捕获" class="headerlink" title="正则的捕获"></a>正则的捕获</h2><ul>
+<li>实现正则的办法<ul>
+<li>正则RegExp.prototype上的方法<ul>
+<li>exec</li>
+<li>test</li>
+</ul>
+</li>
+<li>字符串String.prototype上支持正则表达式处理的方法<ul>
+<li>replace</li>
+<li>match</li>
+<li>splite</li>
+<li>……</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>let str = “zhangyingjun2020yanfdao2030”;<br>let reg = /^\d+$/;<br>基于exec 实现的正则捕获<br><strong>1.捕获的到结果是null或者是一个数组</strong><br>  第一项 是捕获到的内容<br>  其余项:对应小分组本次单独捕获的内容<br>  index:当前捕获内容在字符串中的索引<br>  input:原始字符串<br><strong>2.每执行一次exec.只能捕获到第一个符合正则规则的,但是默认情况下,我们执行一百遍,获取的永远是第一个匹配到的,其余捕获不到</strong><br>  =&gt; 正则捕获的懒惰性:只捕获第一个<br>console.log(reg.exec(str));//[“2020”, index: 12, input: “zhangyingjun2020yanfdao2030”, groups: undefined]<br>reg.lastIndex : 当前正则下一次匹配的骑士索引位置<br>console.log(reg.lastIndex);// 0 下面匹配捕获的是从STR索引的位置开始找<br>console.log(reg..exec(str));<br>console.log(reg.lastIndex);// 0 第一次匹配捕获完成,lastIdex 没有改变,所以下一次exec依然是从字符串最开始找,找到的永远是第一个的<br>解决办法 全局捕获 g</p>
+</blockquote>
+<blockquote>
+<p>let reg = /\d+/g;<br>console.log(reg.exec(str));//[“2020”,..]<br>console.log(reg.lastIndex);// 13 设置全局匹配修饰符g后,第一次匹配完,lastIndex会自己修改<br>console.log(reg.exec(str));//[“2030”,..]<br>console.log(reg.lastIndex);// 24<br>console.log(reg.exec(str));//null 当全局捕获后,再次捕获的结果是null,但是lastInedex又回归了初始值零,再次捕获又第一个开始了…<br>console.log(reg.lastIndex);//0<br>console.log(reg.exec(str));//[“2020”,..]</p>
+</blockquote>
+<blockquote>
+<p>实现正则捕获的前提是:当前正则要和字符串匹配,如果不匹配捕获结果是null<br>console.log(reg.test(str));//false<br>console.log(reg.exec(str));//null</p>
+</blockquote>
+<h2 id="需求-编写一个方法execAll执行一次可以把所有的结果捕获到-前提正则一定要设置全局修饰符g"><a href="#需求-编写一个方法execAll执行一次可以把所有的结果捕获到-前提正则一定要设置全局修饰符g" class="headerlink" title="需求:编写一个方法execAll执行一次可以把所有的结果捕获到(前提正则一定要设置全局修饰符g)"></a>需求:编写一个方法execAll执行一次可以把所有的结果捕获到(前提正则一定要设置全局修饰符g)</h2><blockquote>
+<p>~ function(){<br>   function execAll(str=””){<br>       //str:要匹配的字符串<br>       //this:RegExp的实例（当前操作的正则）<br>       //进来的第一件事,验证当前正则是否设置了G 不设置则不能再进行循环捕获了.否则会导致死循环<br>       //ARY存储最后所捕获的信息 RES存储每一次捕获到的内容(数组)<br>       if (!this.global) return this.exec(str);<br>       let ary = [];<br>           res = this.exec(str);<br>       while (res){<br>           //把每一次捕获的内容RES[0]存到数组中<br>           ary.push(res[0]);<br>           //只要捕获的内容不为NULL则继续捕获下去<br>           res = this.exec(str);<br>       }<br>       return ary.length === 0 ? null : ary;<br>   }<br>   RegExp.prototype.execAll = execAll;<br>}();<br>字符串中的<strong>MATCH</strong>方法，可以在执行一次的情况下捕获到所有匹配的数据，前提正则也得设置G才行</p>
+</blockquote>
 
         </div>
       </article>
