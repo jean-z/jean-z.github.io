@@ -223,6 +223,19 @@
 <h2 id="需求-编写一个方法execAll执行一次可以把所有的结果捕获到-前提正则一定要设置全局修饰符g"><a href="#需求-编写一个方法execAll执行一次可以把所有的结果捕获到-前提正则一定要设置全局修饰符g" class="headerlink" title="需求:编写一个方法execAll执行一次可以把所有的结果捕获到(前提正则一定要设置全局修饰符g)"></a>需求:编写一个方法execAll执行一次可以把所有的结果捕获到(前提正则一定要设置全局修饰符g)</h2><blockquote>
 <p>~ function(){<br>   function execAll(str=””){<br>       //str:要匹配的字符串<br>       //this:RegExp的实例（当前操作的正则）<br>       //进来的第一件事,验证当前正则是否设置了G 不设置则不能再进行循环捕获了.否则会导致死循环<br>       //ARY存储最后所捕获的信息 RES存储每一次捕获到的内容(数组)<br>       if (!this.global) return this.exec(str);<br>       let ary = [];<br>           res = this.exec(str);<br>       while (res){<br>           //把每一次捕获的内容RES[0]存到数组中<br>           ary.push(res[0]);<br>           //只要捕获的内容不为NULL则继续捕获下去<br>           res = this.exec(str);<br>       }<br>       return ary.length === 0 ? null : ary;<br>   }<br>   RegExp.prototype.execAll = execAll;<br>}();<br>字符串中的<strong>MATCH</strong>方法，可以在执行一次的情况下捕获到所有匹配的数据，前提正则也得设置G才行</p>
 </blockquote>
+<h2 id="正则的分组捕获"><a href="#正则的分组捕获" class="headerlink" title="正则的分组捕获"></a>正则的分组捕获</h2><blockquote>
+<p>身份证号<br>let str = “1223231312312313123”;<br>let reg = /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{2})(\d)(\d|X)$/<br>第一项 大正则匹配的结果<br>其余项:每一个小分组单独匹配的结果<br>如果设置了分组(改变优先级) 但是捕获的时候不需要单独捕获,可以基于?:来处理</p>
+</blockquote>
+<blockquote>
+<p>match只能把大正则匹配的内容获取到,小分组匹配的信息无法获取</p>
+</blockquote>
+<h2 id="分组引用"><a href="#分组引用" class="headerlink" title="分组引用"></a>分组引用</h2><blockquote>
+<p>let str  = “book”;<br>let reg = /^<a href="[a-zA-Z]">a-zA-Z</a>\1[a-zA-Z]$/<br>分组引用就是通过数字让其代表和对应分组出现一模一样的内容</p>
+</blockquote>
+<p>##　正则捕获的贪婪性</p>
+<blockquote>
+<p>let str = “asd2020@2030”;<br>正则捕获的贪婪性 默认情况下 正则捕获的时候是按照当前正则所匹配的<strong>最长结果</strong>来获取的<br>let reg = /\d+/g;<br>console.log(str.match(reg))// [“2020”,”2030”];<br>//取消懒惰性 在量词元字符后面设置 ?<br>let reg = /\d+?/g;<br>console.log(str.match(reg))// [“2”,”0”,”2”,”0”,”2”,”0”,”3”,”0”];</p>
+</blockquote>
 
         </div>
       </article>
@@ -251,6 +264,10 @@
     </div>
     <!-- Pre or Next -->
     <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/2020/03/04/Responsive-Web-Design/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
       
       
         <div class="nav-next">

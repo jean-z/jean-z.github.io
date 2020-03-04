@@ -18,7 +18,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="jean博客"/>
+      <meta property="og:title" content="响应式布局"/>
   
   <!--Open Graph Description-->
   
@@ -28,7 +28,7 @@
   <meta property="og:site_name" content="jean博客"/>
   <!--Type page-->
   
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content="article" />
   
   <!--Page Cover-->
   
@@ -37,7 +37,7 @@
 
   <!-- Title -->
   
-  <title>Archives - jean博客</title>
+  <title>响应式布局 - jean博客</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
@@ -119,74 +119,78 @@
 
 
   <!-- Main Content -->
-  
-
-<!-- Main Content -->
-<div class="archive content-area">
-  <div class="container">
-    <h1 class="entry-title">Archives</h1>
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <!-- Use lodash to classify posts. See https://lodash.com/docs#groupBy
-          1. group site.posts by year
-          2. sort posts-in-one-year by Month and Day
-        -->
-        
-
-        
-          <h2 class="year">2020</h2>
-          <ul class="list">
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            响应式布局
             
-  <li>
-    <span class="date">
-      2020-03-04
-    </span>
-    <a href="/2020/03/04/RegExp/" class="title">
-      正则表达式
-    </a>
-  </li>
+          </h1>
+          <p class="posted-on">
+          2020-03-04
+          </p>
+          <div class="tags-links">
+            
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content has_line_number">
+          <p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1583313573681&di=6594b023f80cfa696d0a6810d78aa041&imgtype=0&src=http%3A%2F%2Fww2.sinaimg.cn%2Fcrop.0.0.1000.562.1000.562%2F69b7d63agw1f647hn7y4uj20rs0fmgmz.jpg" alt="Image text"></p>
+<h2 id="什么是响应式布局"><a href="#什么是响应式布局" class="headerlink" title="什么是响应式布局"></a>什么是响应式布局</h2><ul>
+<li>响应式界面能够适应不同的设备 如果将屏幕看作容器，那么内容就像水一样</li>
+</ul>
+<h2 id="rem-适配方案"><a href="#rem-适配方案" class="headerlink" title="rem 适配方案"></a>rem 适配方案</h2><ul>
+<li>em 是根据其父元素的字体大小来设置，而 rem 是根据网页的跟元素（html）来设置字体大小。</li>
+</ul>
+<h2 id="vw-适配方案"><a href="#vw-适配方案" class="headerlink" title="vw 适配方案"></a>vw 适配方案</h2><ul>
+<li>百分比适配方案的核心需要一个全局通用的基准单位，rem 是不错，但是需要借助 Javascript 进行动态修改根元素的 font-size，而 vw/vh（vmax/vmin） 的出现则很好弥补 rem 需要 JS 辅助的缺点。<ul>
+<li>1vw 等于 window.innerWidth 的数值的 1%</li>
+<li>1vh 等于window.innerHeight 的数值的 1%<br><img src="../../public/images/vm.png" alt="Image text"></li>
+</ul>
+</li>
+</ul>
 
-  <li>
-    <span class="date">
-      2020-03-04
-    </span>
-    <a href="/2020/03/04/Responsive-Web-Design/" class="title">
-      响应式布局
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2020-03-03
-    </span>
-    <a href="/2020/03/03/performance optimization/" class="title">
-      前端性能优化总结
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2020-03-02
-    </span>
-    <a href="/2020/03/02/url/" class="title">
-      当用户在地址栏中输入网址，到最后看到页面，中间都经历了什么？
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2020-03-02
-    </span>
-    <a href="/2020/03/02/NeverSettle/" class="title">
-      Never Settle
-    </a>
-  </li>
-
-
-          </ul>
-        
-      </div>
+        </div>
+      </article>
     </div>
+    <!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+  <div id="disqus_thread">
+    <script type="text/javascript">
+    var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = 'post-Responsive-Web-Design';
+          this.page.title = '响应式布局';
+      };
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  </div>
+  
+</section>
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+      
+        <div class="nav-next">
+          <a href="/2020/03/04/RegExp/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
   </div>
 </div>
 
@@ -257,12 +261,14 @@
   var disqus_shortname = 'hinpc';
 
   
+  var disqus_url = 'https://jean-z.github.io/2020/03/04/Responsive-Web-Design/';
+  
 
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
