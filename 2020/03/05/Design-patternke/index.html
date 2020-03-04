@@ -18,7 +18,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="vuex"/>
+      <meta property="og:title" content="设计模式"/>
   
   <!--Open Graph Description-->
   
@@ -37,7 +37,7 @@
 
   <!-- Title -->
   
-  <title>vuex - jean博客</title>
+  <title>设计模式 - jean博客</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
@@ -127,11 +127,11 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            vuex
+            设计模式
             
           </h1>
           <p class="posted-on">
-          2020-03-04
+          2020-03-05
           </p>
           <div class="tags-links">
             
@@ -141,7 +141,15 @@
         </div>
         <!-- Post Main Content -->
         <div class="entry-content has_line_number">
-          
+          <h2 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h2><ul>
+<li>把描述当前事务特征的信息进行分组归类(减少全局变量的污染)这就是JS<br>中的单例设计模式</li>
+<li>beautifulGirl 不仅仅被叫做变量(对象名),也被称为”命名空间”单例模式:把描述事务的信息放到一个命名空间中进行分组.防止全局变量的污染<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let beautifulGirl&#x3D;&#123;</span><br><span class="line">    name :&quot;xxx&quot;,</span><br><span class="line">    age:19</span><br><span class="line">&#125;;</span><br><span class="line">let oldMan&#x3D;&#123;</span><br><span class="line">    name :&quot;yyy&quot;,</span><br><span class="line">    age:89</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>为了让单例模式高大上一点,真实项目中的单例模式都这样处理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let namespace &#x3D; (function()&#123;</span><br><span class="line">    &#x2F;&#x2F;创建一些方法</span><br><span class="line">    let fn &#x3D; function()&#123;</span><br><span class="line">        &#x2F;&#x2F;...</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    return &#123;</span><br><span class="line">        name:&quot;xxx&quot;,</span><br><span class="line">        fn:fn</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;)();</span><br><span class="line">namespace.name</span><br><span class="line">namespace.fn()</span><br></pre></td></tr></table></figure>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2>批量化生产,把实现某个功能的代码进行封装,后期在想实现这个功能,我们直接执行函数即可</li>
+<li>低偶合:减少页面中冗余的代码</li>
+<li>高内聚:提高代码的重复使用率<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function createPerson(name,age)&#123;</span><br><span class="line">    let person &#x3D; &#123;&#125;;</span><br><span class="line">    person.name &#x3D; name;</span><br><span class="line">    person.age &#x3D; age;</span><br><span class="line">    return person</span><br><span class="line">&#125;</span><br><span class="line">let beautifulGirl &#x3D; createPerson(&quot;sss&quot;,11);</span><br><span class="line">let oldMan &#x3D;  createPerson(&quot;yyy&quot;,111);</span><br></pre></td></tr></table></figure></li>
+</ul>
+
         </div>
       </article>
     </div>
@@ -156,8 +164,8 @@
     <script type="text/javascript">
     var disqus_config = function () {
           this.page.url = window.location.href;
-          this.page.identifier = 'post-vuex';
-          this.page.title = 'vuex';
+          this.page.identifier = 'post-Design-patternke';
+          this.page.title = '设计模式';
       };
     </script>
     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
@@ -170,13 +178,9 @@
     <!-- Pre or Next -->
     <div class="nav-links">
       
-        <div class="nav-previous">
-          <a href="/2020/03/04/Higher-order-function/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
-        </div>
-      
       
         <div class="nav-next">
-          <a href="/2020/03/04/Responsive-Web-Design/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+          <a href="/2020/03/05/Throttling-and-anti-shake/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
         </div>
       
     </div>
@@ -251,7 +255,7 @@
   var disqus_shortname = 'hinpc';
 
   
-  var disqus_url = 'https://jean-z.github.io/2020/03/04/vuex/';
+  var disqus_url = 'https://jean-z.github.io/2020/03/05/Design-patternke/';
   
 
   (function(){

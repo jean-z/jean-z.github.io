@@ -232,8 +232,7 @@
 <h2 id="分组引用"><a href="#分组引用" class="headerlink" title="分组引用"></a>分组引用</h2><blockquote>
 <p>let str  = “book”;<br>let reg = /^<a href="[a-zA-Z]">a-zA-Z</a>\1[a-zA-Z]$/<br>分组引用就是通过数字让其代表和对应分组出现一模一样的内容</p>
 </blockquote>
-<p>##　正则捕获的贪婪性</p>
-<blockquote>
+<h2 id="正则捕获的贪婪性"><a href="#正则捕获的贪婪性" class="headerlink" title="正则捕获的贪婪性"></a>正则捕获的贪婪性</h2><blockquote>
 <p>let str = “asd2020@2030”;<br>正则捕获的贪婪性 默认情况下 正则捕获的时候是按照当前正则所匹配的<strong>最长结果</strong>来获取的<br>let reg = /\d+/g;<br>console.log(str.match(reg))// [“2020”,”2030”];<br>//取消懒惰性 在量词元字符后面设置 ?<br>let reg = /\d+?/g;<br>console.log(str.match(reg))// [“2”,”0”,”2”,”0”,”2”,”0”,”3”,”0”];</p>
 </blockquote>
 <ul>
@@ -243,7 +242,9 @@
 <li>(&gt;=)正向预查</li>
 <li>(?!)负向预查</li>
 </ul>
+<h2 id="formatTime：时间字符串的格式化处理"><a href="#formatTime：时间字符串的格式化处理" class="headerlink" title="formatTime：时间字符串的格式化处理"></a>formatTime：时间字符串的格式化处理</h2> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function formatTime(templete &#x3D; &quot;&#123;0&#125;年&#123;1&#125;月&#123;2&#125;日 &#123;3&#125;时&#123;4&#125;分&#123;5&#125;秒&quot;) &#123;</span><br><span class="line">	let timeAry &#x3D; this.match(&#x2F;\d+&#x2F;g);</span><br><span class="line">	return templete.replace(&#x2F;\&#123;(\d+)\&#125;&#x2F;g, (...[, $1]) &#x3D;&gt; &#123;</span><br><span class="line">		let time &#x3D; timeAry[$1] || &quot;00&quot;;</span><br><span class="line">		return time.length &lt; 2 ? &quot;0&quot; + time : time;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line">String.prototype.formatTime &#x3D; formatTime;</span><br></pre></td></tr></table></figure>
 
+<h2 id="queryURLParams：获取URL地址问号和面的参数信息（可能也包含HASH值）"><a href="#queryURLParams：获取URL地址问号和面的参数信息（可能也包含HASH值）" class="headerlink" title="queryURLParams：获取URL地址问号和面的参数信息（可能也包含HASH值）"></a>queryURLParams：获取URL地址问号和面的参数信息（可能也包含HASH值）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function queryURLParams() &#123;</span><br><span class="line">	let obj &#x3D; &#123;&#125;;</span><br><span class="line">	this.replace(&#x2F;([^?&#x3D;&amp;#]+)&#x3D;([^?&#x3D;&amp;#]+)&#x2F;g, (...[, $1, $2]) &#x3D;&gt; obj[$1] &#x3D; $2);</span><br><span class="line">	this.replace(&#x2F;#([^?&#x3D;&amp;#]+)&#x2F;g, (...[, $1]) &#x3D;&gt; obj[&#39;HASH&#39;] &#x3D; $1);</span><br><span class="line">	return obj;</span><br><span class="line">&#125;</span><br><span class="line">String.prototype.queryURLParams &#x3D; queryURLParams;</span><br></pre></td></tr></table></figure>
         </div>
       </article>
     </div>
