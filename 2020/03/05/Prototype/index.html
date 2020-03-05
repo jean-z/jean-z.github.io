@@ -18,7 +18,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="设计模式"/>
+      <meta property="og:title" content="Prototype"/>
   
   <!--Open Graph Description-->
   
@@ -37,7 +37,7 @@
 
   <!-- Title -->
   
-  <title>设计模式 - jean博客</title>
+  <title>Prototype - jean博客</title>
 
 
   <link rel="shortcut icon" href="https://hexo.io/icon/favicon-96x96.png">
@@ -127,7 +127,7 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            设计模式
+            Prototype
             
           </h1>
           <p class="posted-on">
@@ -141,15 +141,15 @@
         </div>
         <!-- Post Main Content -->
         <div class="entry-content has_line_number">
-          <h2 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h2><ul>
-<li>把描述当前事务特征的信息进行分组归类(减少全局变量的污染)这就是JS<br>中的单例设计模式</li>
-<li>beautifulGirl 不仅仅被叫做变量(对象名),也被称为”命名空间”单例模式:把描述事务的信息放到一个命名空间中进行分组.防止全局变量的污染<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let beautifulGirl&#x3D;&#123;</span><br><span class="line">    name :&quot;xxx&quot;,</span><br><span class="line">    age:19</span><br><span class="line">&#125;;</span><br><span class="line">let oldMan&#x3D;&#123;</span><br><span class="line">    name :&quot;yyy&quot;,</span><br><span class="line">    age:89</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
-<li>为了让单例模式高大上一点,真实项目中的单例模式都这样处理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let namespace &#x3D; (function()&#123;</span><br><span class="line">    &#x2F;&#x2F;创建一些方法</span><br><span class="line">    let fn &#x3D; function()&#123;</span><br><span class="line">        &#x2F;&#x2F;...</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    return &#123;</span><br><span class="line">        name:&quot;xxx&quot;,</span><br><span class="line">        fn:fn</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;)();</span><br><span class="line">namespace.name</span><br><span class="line">namespace.fn()</span><br></pre></td></tr></table></figure>
-<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2>批量化生产,把实现某个功能的代码进行封装,后期在想实现这个功能,我们直接执行函数即可</li>
-<li>低偶合:减少页面中冗余的代码</li>
-<li>高内聚:提高代码的重复使用率<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function createPerson(name,age)&#123;</span><br><span class="line">    let person &#x3D; &#123;&#125;;</span><br><span class="line">    person.name &#x3D; name;</span><br><span class="line">    person.age &#x3D; age;</span><br><span class="line">    return person</span><br><span class="line">&#125;</span><br><span class="line">let beautifulGirl &#x3D; createPerson(&quot;sss&quot;,11);</span><br><span class="line">let oldMan &#x3D;  createPerson(&quot;yyy&quot;,111);</span><br></pre></td></tr></table></figure></li>
+          <h2 id="手动实现一个-instanceof"><a href="#手动实现一个-instanceof" class="headerlink" title="手动实现一个 instanceof"></a>手动实现一个 instanceof</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function instanceOf(obj, object) &#123;&#x2F;&#x2F;obj 表示实例对象，object 表示对象</span><br><span class="line">  var O &#x3D; object.prototype;</span><br><span class="line">  obj &#x3D; obj.__proto__;</span><br><span class="line">  while (true) &#123; </span><br><span class="line">      if (obj &#x3D;&#x3D;&#x3D; null) </span><br><span class="line">          return false; </span><br><span class="line">      if (O &#x3D;&#x3D;&#x3D; obj) &#x2F;&#x2F; 这里重点：当 O 严格等于 obj 时，返回 true </span><br><span class="line">          return true; </span><br><span class="line">      obj &#x3D; obj.__proto__; &#x2F;&#x2F;继续向上级查找</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>instance利用的是原型链的机制:实例的隐式原型属性<strong>proto</strong>指向其构造函数的显式原型prototype<br><code>（obj._proto_ === Object.prototype）</code>；<br>得到某个对象的某个属性时，如果这个对象本身没有这个属性，那么会去它的 <code>__proto__</code> （即它的构造函数的 <code>prototype</code>）中去寻找；</p>
+<h2 id="描述-new-一个对象的详细过程"><a href="#描述-new-一个对象的详细过程" class="headerlink" title="描述 new 一个对象的详细过程"></a>描述 new 一个对象的详细过程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function Test() &#123;&#125;</span><br><span class="line">const test &#x3D; new Test();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>1.创建一个对象<figure class="highlight plain"><figcaption><span>obj </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ 2.设置新对象的 constructor 属性为构造函数的名称，设置新对象的__proto__属性指向构造函数的 prototype 对象</span><br></pre></td></tr></table></figure>
+obj.constructor = Test;<br>obj.<strong>proto</strong> = Test.prototype;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+ 3.用新对象调用函数，函数中的 this 被指向新实例对象</span><br><span class="line">&#96;&#96;&#96;Test.call(obj)</span><br></pre></td></tr></table></figure></li>
+<li>4.将初始化完毕的新对象地址，保存到等号左边的变量中(开辟一个新的堆内存)</li>
 </ul>
-
+<h2 id="手动实现一个-new-操作符"><a href="#手动实现一个-new-操作符" class="headerlink" title="手动实现一个 new 操作符"></a>手动实现一个 new 操作符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function myNew(Obj,...args)&#123;</span><br><span class="line">    var obj &#x3D; Object.create(Obj.prototype);&#x2F;&#x2F;使用指定的原型对象及其属性去创建一个新的对象</span><br><span class="line">    &#x2F;&#x2F;等同(obj.constructor &#x3D; Test;obj.__proto__ &#x3D; Obj.prototype);</span><br><span class="line">    </span><br><span class="line">    Obj.apply(obj,args); &#x2F;&#x2F; 绑定 this 到obj, 设置 obj 的属性</span><br><span class="line">    return obj; &#x2F;&#x2F; 返回实例</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
       </article>
     </div>
@@ -164,8 +164,8 @@
     <script type="text/javascript">
     var disqus_config = function () {
           this.page.url = window.location.href;
-          this.page.identifier = 'post-Design-patternke';
-          this.page.title = '设计模式';
+          this.page.identifier = 'post-Prototype';
+          this.page.title = 'Prototype';
       };
     </script>
     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
@@ -178,13 +178,9 @@
     <!-- Pre or Next -->
     <div class="nav-links">
       
-        <div class="nav-previous">
-          <a href="/2020/03/05/Prototype/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
-        </div>
-      
       
         <div class="nav-next">
-          <a href="/2020/03/05/Throttling-and-anti-shake/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+          <a href="/2020/03/05/Design-patternke/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
         </div>
       
     </div>
@@ -259,7 +255,7 @@
   var disqus_shortname = 'hinpc';
 
   
-  var disqus_url = 'https://jean-z.github.io/2020/03/05/Design-patternke/';
+  var disqus_url = 'https://jean-z.github.io/2020/03/05/Prototype/';
   
 
   (function(){
