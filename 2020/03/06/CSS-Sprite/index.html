@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+  <meta name="description" content="记录生活和代码，鼓励阅读与创作">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="jean">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="CSS Sprite"/>
+  
+  <!--Open Graph Description-->
+  
+      <meta property="og:description" content="记录生活和代码，鼓励阅读与创作" />
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="jean博客"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>CSS Sprite - jean博客</title>
+
+
+  <link rel="shortcut icon" href="/images/favicon32.jpg">
+
+  <!-- Custom CSS/Sass -->
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="/images/logo.svg" alt="jean博客" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  Home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  Archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            CSS Sprite
+            
+          </h1>
+          <p class="posted-on">
+          2020-03-06
+          </p>
+          <div class="tags-links">
+            
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content has_line_number">
+          <p>一、什么是css sprites   -   TOP<br>css sprites直译过来就是CSS精灵。通常被解释为“CSS图像拼合”或“CSS贴图定位”。其实就是通过将多个图片融合到一张图里面，然后通过CSS background背景定位技术技巧布局网页背景。这样做的好处也是显而易见的，因为图片多的话，会增加http的请求，无疑促使了网站性能的减低，特别是图片特别多的网站，如果能用css sprites降低图片数量，带来的将是速度的提升。</p>
+<p>css sprites是什么通俗解释：CSS Sprites其实就是把网页中一些背景图片整合拼合成一张图片中，再利用DIV CSS的“background-image”，“background- repeat”，“background-position”的组合进行背景定位，background-position可以用数字能精确的定位出背景图片在布局盒子对象位置。</p>
+<p>二、适合与不适合DIV CSS sprites拼合布局   -   TOP<br>1、适合：一般小图标素材<br>小的图标ico类素材，一般图标很小十多像素几十像素的宽度高度，这种适合拼合成一张图实现sprites background背景定位布局。多小ico太多自然加载网页时瞬间会消耗些http iis链接数，但很快加载完又会释放。</p>
+<p>2、不适合：大图大背景<br>大背景一般用于网页背景，拼合时，设置为网页背景时所有背景都会显示出来。大图拼接拼合会增大图片大小，网络带宽不好的访问者访问时由于背景图大文件大会加载稍慢些，所以大图不推荐拼接拼合来使用css sprites背景定位布局。</p>
+<p>3、sprites适合推荐小结<br>一般此sprites拼合布局用于局部小盒子布局不适合大背景大布局背景使用。比如小局部布局小图标背景、小导航背景等DIVCSS布局。</p>
+<p>三、div css sprites优势与缺点劣势判断选择   -   TOP<br>1、sprites优势：<br>若干小图标拼合成一张图后布局，减少http iis请求数，对于大战大流量网站来说隐形优势很显然的，从而隐形地提升了网站性能。对于大流量网站来说本来http请求数比较宝贵，使用DIV+CSS Sprites这样可以大大的提高了页面的性能，这是CSS Sprites最大的优点，也是其被广泛传播和应用的主要原因，同时也减少图片文件数目。</p>
+<p>2、sprites缺点<br>在图片合并的时候，你要把多张图片有序的合理的合并成一张图片，还要留好只够的空间，防止板块内不会出现不必要的背景，如果留空间或拼合位置不合适，在布局时容易出现布局这个盒子对象时，设置背景出现拼合相邻图片，干扰图片的情况;</p>
+<p>CSS Sprites在开发的时候比较麻烦，你要通过photoshop(PS)或其他工具测量计算每一个背景单元的精确位置，这是针线活，没什么难度，但是很繁琐;</p>
+<p>CSS Sprites在维护的时候比较麻烦，sprites是一般双刃剑，如果页面背景有少许改动，一般就要改这张合并的图片，无需改的地方最好不要动，这样避免改动更多的css，如果在原来的地方放不下，有只能（最好）往下加图片，这样图片的字节就增加了，因为每次的图片改动都得往这个图片删除或添加内容，显得稍微繁琐，而且重新算图片的位置（尤其是这种上千px的图）也是一件颇为不爽的事情</p>
+<p>由于图片的位置需要固定为某个绝对数值，这就失去了诸如center之类的灵活性。</p>
+<p>3、DIVCSS5推荐小结<br>犹豫拼接图片需要一定经验技巧（做实践即可快速掌握）、测量定位数值、修改不是那么灵活等原因，一般小网站站、小流量网站、一般企业网站不是很推荐使用CSS Sprites，因为使用CSS Sprites会比普通单个背景图片布局要耗费时间和精力，所以不是很推荐小站。但这个布局技巧也必须要学会掌握灵活布局才是目的。小站HTTP请求数丰富这点拼接其实也起不来什么优势反而会浪费宝贵时间。相反大网站大流量网站推荐使用，这样比较值得。</p>
+<p>四、div css sprites实例示例教程   -   TOP<br>1、素材与要实现效果截图</p>
+<p>拼合ico图标素材实现列表不同图标效果截图<br>拼合ico图标素材实现列表不同图标效果截图</p>
+<p>2、sprites实例教程解释介绍<br>首先这些图标素材是放在同一张图片上（PS拼合），然后实现成列表类布局，列表每个前图标不同。使用div css sprites实现此布局（其实使用background样式实现）。</p>
+<p>首先此列表布局我们使用ul li列表布局，每个li站一行排版，对ul设置padding实现四周内容与边框一定间距效果，因为每个li前面图标不同，但此背景图片是拼合在一张图片上，所以这里做li里开始使用span标签实现这个不同图标效果，每个图标不同为了区别span所以对span设置不同class，不同class对应设置定位相应的图标。</p>
+<p>3、实例教程准备<br>1）、初始化模板使用：为了兼容各大浏览器，仍然这里使用DIVCSS5提供初始化模板，在此模板基础上修改设置符合本实例CSS样式。<br>2）、图标素材，这里直接为大家提供拼接好的图标素材图片一张，命名为“ico.png”，如下图，可直接另存为保存使用。</p>
+<p>sprites图片素材<br>sprites案例图片素材（直接点击图片鼠标右键可以另存为保存使用）</p>
+<p>4、先布局出效果，再css sprites设置不同背景图标样式<br>1)、关键html代码：</p>
+<ul class="Sprites"> 
+    <li><span class="a1"></span><a href="#">WORD文章标题</a></li> 
+    <li><span class="a2"></span><a href="#">PPT内容标题</a></li> 
+    <li><span class="a3"></span><a href="#">Excel内容标题</a></li> 
+    <li><span class="a4"></span><a href="#">PDF内容标题</a></li> 
+    <li><span class="a5"></span><a href="#">文本文档标题</a></li> 
+</ul> 
+为了区别不同效果对span加入不同class。
+2）、关键CSS代码
+
+<p>ul.Sprites{ margin:0 auto; border:1px solid #F00; width:300px; padding:10px;}<br>ul.Sprites li{ height:24px; font-size:14px;line-height:24px; text-align:left; overflow:hidden}<br>ul.Sprites li span{ float:left; width:17px;padding-top:5px;height:17px;<br>overflow:hidden;background:url(ico.png) no-repeat}<br>ul.Sprites li a{ padding-left:5px}<br>3）、效果截图</p>
+<p>未使用sprites技术引入背景图片效果截图<br>未使用sprites技术引入背景图片效果截图</p>
+<p>4）、使用css sprites设置定位背景完整关键CSS代码</p>
+<p>ul.Sprites{ margin:0 auto; border:1px solid #F00; width:300px; padding:10px;}<br>ul.Sprites li{ height:24px; font-size:14px;line-height:24px; text-align:left; overflow:hidden}<br>ul.Sprites li span{ float:left; width:17px;padding-top:5px;height:17px;<br>overflow:hidden;background:url(ico.png) no-repeat}<br>ul.Sprites li a{ padding-left:5px}<br>ul.Sprites li span.a1{ background-position: -62px -32px}<br>ul.Sprites li span.a2{ background-position: -86px -32px}<br>ul.Sprites li span.a3{ background-position: -110px -32px}<br>ul.Sprites li span.a4{ background-position: -133px -32px}<br>ul.Sprites li span.a5{ background-position: -158px -32px}<br>最终实现浏览器效果测试效果图</p>
+<p>css sprites案例效果截图<br>div css sprites案例效果截图</p>
+<p>5）、css sprites关键代码与解释</p>
+<p>ul.Sprites li span.a1{ background-position: -62px -32px}<br>ul.Sprites li span.a2{ background-position: -86px -32px}<br>ul.Sprites li span.a3{ background-position: -110px -32px}<br>ul.Sprites li span.a4{ background-position: -133px -32px}<br>ul.Sprites li span.a5{ background-position: -158px -32px}<br>首先对ul.Sprites li span引入背景<br>ul.Sprites li span{ background:url(ico.png) no-repeat} 给span设置css背景图片。<br>再分别对不同span class设置对于图标背景定位具体值<br>ul.Sprites li span.a1{ background-position: -62px -32px}设置背景图片作为对应盒子对象背景后向左“拖动”62px，向上“拖动”32px开始显示此背景图标<br>ul.Sprites li span.a2{ background-position: -86px -32px}设置背景图片作为对应盒子对象背景后向左“拖动”86px，向上“拖动”32px开始显示此背景图标<br>ul.Sprites li span.a3{ background-position: -110px -32px}设置背景图片作为对应盒子对象背景后向左“拖动”110px，向上“拖动”32px开始显示此背景图标<br>ul.Sprites li span.a4{ background-position: -133px -32px}设置背景图片作为对应盒子对象背景后向左“拖动”133px，向上“拖动”32px开始显示此背景图标<br>ul.Sprites li span.a5{ background-position: -158px -32px}设置背景图片作为对应盒子对象背景后向左“拖动”158px，向上“拖动”32px开始显示此背景图标</p>
+<p>关键：背景background-position有两个数值，前一个代表靠左距离值（可为正可为负），第二个数值代表靠上距离值（可为正可为负）<br>背景background-position有两个数值可以为正可以为负，当为正数时，代表背景图片作为对象盒子背景图片时靠左和考上多少距离多少开始显示背景图片；当为负数时代表背景图片作为盒子对象背景图片，将背景图片拖动超出盒子对象左边多远，拖动超出盒子对象上边多远开始显示此背景图片。</p>
+<p>6）、背景图片定位数值获取<br>向左“拖动”，向上“拖动”这些这PS获取图文教程</p>
+<p>利用切片工具获取对应小图标在图片文件中位置<br>利用切片工具获取对应小图标在图片文件中位置</p>
+<p>通过ps软件利用切片工具画出要显示图片区域后，双击即可弹出“切片详细卡”，可以得到X（靠左距离值），Y（靠上距离值）即可获得对应图片素材在大图中位置。</p>
+<p>五、在线样式与下载   -   TOP<br>1、在线样式</p>
+<p>查看案例</p>
+<p>2、打包下载</p>
+<p>立即下载（5.969KB）</p>
+<p>六、DIV CSS sprites技巧技术总结   -   TOP<br>CSS sprites其实就是对CSS背景background样式的扩展应用，以前设置背景background-position常见为正数值，设置背景靠左靠上距离多少像素开始显示图片，为负数值后，是将图片拖离左边上边多少像素开始显示图片，下载本案例多次修改修改数值，观察观察能找到规律很快就会作为此技巧，同时学会PS切片工具获取距离值。</p>
+<p>如需转载，请注明文章出处和来源网址：<a href="http://www.divcss5.com/rumen/r767.shtml" target="_blank" rel="noopener">http://www.divcss5.com/rumen/r767.shtml</a></p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+  <div id="disqus_thread">
+    <script type="text/javascript">
+    var disqus_config = function () {
+          this.page.url = window.location.href;
+          this.page.identifier = 'post-CSS-Sprite';
+          this.page.title = 'CSS Sprite';
+      };
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  </div>
+  
+</section>
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/2020/03/06/Call-apply-bind/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+      
+      
+        <div class="nav-next">
+          <a href="/2020/03/05/Async/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">关于本站</h1>
+        <div class="custom-widget-content">
+          
+          <p>张英俊的个人博客网站</p>
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/jean-z" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="https://weibo.com/1780163820/profile?topnav=1&wvr=6" class="icon icon-weibo" target="_blank">weibo</a>
+            
+              <a href="862254760@qq.com" class="icon icon-mail" target="_blank">mail</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onSubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>jean博客 &copy; 2020</span>
+    
+      <span class="split">|</span>
+      <span>jean © 2020</span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+
+<script src="/js/app.js"></script>
+
+
+<script>
+  var disqus_shortname = 'hinpc';
+
+  
+  var disqus_url = 'https://jean-z.github.io/2020/03/06/CSS-Sprite/';
+  
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<!-- baidu_analytics start -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?231ccbaa25cdcecb7c4c27e0a48b4956";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- baidu_analytics end -->
+
+
+
+
+</body>
+
+</html>
