@@ -18,7 +18,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="手动实现call apply bind"/>
+      <meta property="og:title" content="vue&amp;webpack"/>
   
   <!--Open Graph Description-->
   
@@ -37,7 +37,7 @@
 
   <!-- Title -->
   
-  <title>手动实现call apply bind - jean</title>
+  <title>vue&amp;webpack - jean</title>
 
 
   <link rel="shortcut icon" href="/images/favicon32.jpg">
@@ -127,11 +127,11 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            手动实现call apply bind
+            vue&webpack
             
           </h1>
           <p class="posted-on">
-          2020-03-06
+          2020-03-09
           </p>
           <div class="tags-links">
             
@@ -141,21 +141,13 @@
         </div>
         <!-- Post Main Content -->
         <div class="entry-content has_line_number">
-          <h2 id="模拟实现call"><a href="#模拟实现call" class="headerlink" title="模拟实现call"></a>模拟实现call</h2><ul>
-<li>1.判断当前this是否为函数，防止Function.prototype.myCall() 直接调用</li>
-<li>2.context 为可选参数，如果不传的话默认上下文为 window</li>
-<li>3.为context 创建一个 Symbol（保证不会重名）属性，<strong>将当前函数赋值给这个属性</strong></li>
-<li>4.处理参数，传入第一个参数后的其余参数</li>
-<li>5.调用函数后即删除该Symbol属性<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.myCall &#x3D; function (context &#x3D; window, ...args) &#123;</span><br><span class="line">      if (this &#x3D;&#x3D;&#x3D; Function.prototype) &#123;</span><br><span class="line">        return undefined; &#x2F;&#x2F; 用于防止 Function.prototype.myCall() 直接调用</span><br><span class="line">      &#125;</span><br><span class="line">      context &#x3D; context || window;</span><br><span class="line">      const fn &#x3D; Symbol();</span><br><span class="line">      context[fn] &#x3D; this;</span><br><span class="line">      const result &#x3D; context[fn](...args);</span><br><span class="line">      delete context[fn];</span><br><span class="line">      return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="模拟实现apply"><a href="#模拟实现apply" class="headerlink" title="模拟实现apply"></a>模拟实现apply</h2>apply实现类似call，参数为数组<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.myApply &#x3D; function (context &#x3D; window, args) &#123;</span><br><span class="line">      if (this &#x3D;&#x3D;&#x3D; Function.prototype) &#123;</span><br><span class="line">        return undefined; &#x2F;&#x2F; 用于防止 Function.prototype.myCall() 直接调用</span><br><span class="line">      &#125;</span><br><span class="line">      const fn &#x3D; Symbol();</span><br><span class="line">      context[fn] &#x3D; this;</span><br><span class="line">      let result;</span><br><span class="line">      if (Array.isArray(args)) &#123;</span><br><span class="line">        result &#x3D; context[fn](...args);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        result &#x3D; context[fn]();</span><br><span class="line">      &#125;</span><br><span class="line">      delete context[fn];</span><br><span class="line">      return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="模拟实现bind"><a href="#模拟实现bind" class="headerlink" title="模拟实现bind"></a>模拟实现bind</h2><ul>
-<li>1.处理参数，返回一个闭包</li>
-<li>2.判断是否为构造函数调用，如果是则使用new调用当前函数</li>
-<li>3.如果不是，使用apply，将context和处理好的参数传入<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.myBind &#x3D; function (context,...args1) &#123;</span><br><span class="line">      if (this &#x3D;&#x3D;&#x3D; Function.prototype) &#123;</span><br><span class="line">        throw new TypeError(&#39;Error&#39;)</span><br><span class="line">      &#125;</span><br><span class="line">      const _this &#x3D; this</span><br><span class="line">      return function F(...args2) &#123;</span><br><span class="line">        &#x2F;&#x2F; 判断是否用于构造函数</span><br><span class="line">        if (this instanceof F) &#123;</span><br><span class="line">          return new _this(...args1, ...args2)</span><br><span class="line">        &#125;</span><br><span class="line">        return _this.apply(context, args1.concat(args2))</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
+          <p>新建一个some文件夹，打开终端开始构建</p>
+<p>npm init</p>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>运行 vue init webpack + 项目名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">F:\QianDuanGaoJiJiaGouShi&gt;vue init webpack vueWebpack</span><br><span class="line"></span><br><span class="line">? Project name vue-webpack</span><br><span class="line">? Project description A Vue.js project</span><br><span class="line">? Author jean &lt;862254760@qq.com&gt;</span><br><span class="line">? Vue build standalone</span><br><span class="line">? Install vue-router? Yes</span><br><span class="line">? Use ESLint to lint your code? No</span><br><span class="line">? Set up unit tests Yes</span><br><span class="line">? Pick a test runner noTest</span><br><span class="line">? Setup e2e tests with Nightwatch? No</span><br><span class="line">? Should we run &#96;npm install&#96; for you after the project has been created? (recommended) npm</span><br></pre></td></tr></table></figure>
+<p>接下来执行 npm install  或者cnpm install   或者 yarn install </p>
+<p>注意  ： 一定要在创建好的vue目录下执行命令：</p>
+<p>然后执行 npm run dev 就大功告成啦 会提示端口名 一般是locahost:8080 也可以自己更改：</p>
 
         </div>
       </article>
@@ -171,8 +163,8 @@
     <script type="text/javascript">
     var disqus_config = function () {
           this.page.url = window.location.href;
-          this.page.identifier = 'post-Call-apply-bind';
-          this.page.title = '手动实现call apply bind';
+          this.page.identifier = 'post-vue-webpack';
+          this.page.title = 'vue&amp;webpack';
       };
     </script>
     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
@@ -186,12 +178,12 @@
     <div class="nav-links">
       
         <div class="nav-previous">
-          <a href="/2020/03/07/Vue-about/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+          <a href="/2020/03/09/Publist-dist/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
         </div>
       
       
         <div class="nav-next">
-          <a href="/2020/03/06/CSS-Sprite/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+          <a href="/2020/03/09/webpack/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
         </div>
       
     </div>
@@ -266,7 +258,7 @@
   var disqus_shortname = 'hinpc';
 
   
-  var disqus_url = 'https://jean-z.github.io/2020/03/06/Call-apply-bind/';
+  var disqus_url = 'https://jean-z.github.io/2020/03/09/vue-webpack/';
   
 
   (function(){
